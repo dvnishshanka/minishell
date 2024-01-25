@@ -15,5 +15,16 @@
 # include "parser.h"
 # include "utils.h"
 
+typedef struct s_global
+{
+	int	error_num;
+	int	stop_heredoc;
+	int	in_cmd;
+	int	in_heredoc;
+}	t_global;
+
+// `g_global` is a global variable
+t_global	g_global;
+
 // Prototypes
 #endif

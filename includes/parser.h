@@ -21,12 +21,17 @@ typedef struct s_lexer
 	struct s_lexer	*prev;
 }	t_lexer;
 
+/*
+envp	: An array of strings representing the environment variables. 
+pwd		: String representing the present working directory
+old_pwd	: String representing the previous working directory
+*/
 typedef struct s_tools
 {
 	char					*args;
 	char					**paths;
 	char					**envp;
-	struct s_simple_cmds	*simple_cmds;
+	struct  s_simple_cmds	*simple_cmds;
 	t_lexer					*lexer_list;
 	char					*pwd;
 	char					*old_pwd;

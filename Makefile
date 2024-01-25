@@ -12,6 +12,7 @@ PATH_ERROR = src/error
 SRCS =	$(PATH_SRC)/main.c	\
 		$(PATH_UTILS)/utils.c	\
 		$(PATH_UTILS)/parse_envp.c	\
+		$(PATH_UTILS)/minishell_loop.c	\
 		$(PATH_ERROR)/error.c
 OBJS = $(SRCS:.c=.o)
 

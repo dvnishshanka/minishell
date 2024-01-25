@@ -12,12 +12,13 @@ int main(int argc, char **argv, char **envp)
     if (argc != 1 || argv[1])
         print_err("This program does not accept any inputs.\n");
     tools.envp = ft_arrdup(envp);
+    find_pwd(&tools);
+    init_tools(&tools);
     while (tools.envp[i])
     {
         printf("%s\n", tools.envp[i]);
         i++;
     }
-    find_pwd(&tools);
      printf("OLDPWD: %s\n", tools.old_pwd);
     printf("PWD: %s\n", tools.pwd);
 
@@ -30,5 +31,7 @@ int main(int argc, char **argv, char **envp)
     // }
     // rl_clear_history();
     free_arr(tools.envp);
+    free(tools.old_pwd);
+    free(tools.pwd);
     return (0);
 }
