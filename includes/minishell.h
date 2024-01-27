@@ -9,11 +9,15 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdbool.h>
+# include <signal.h>
 
 # include "executor.h"
-# include "error.h"
 # include "parser.h"
+# include "error.h"
 # include "utils.h"
+# include "lexer.h"
+
+# define READLINE_MSG	"$> "
 
 typedef struct s_global
 {
@@ -24,7 +28,8 @@ typedef struct s_global
 }	t_global;
 
 // `g_global` is a global variable
-t_global	g_global;
+extern  t_global	g_global;
 
 // Prototypes
+void    init_signals(void);
 #endif

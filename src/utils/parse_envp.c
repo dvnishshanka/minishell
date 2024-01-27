@@ -38,26 +38,27 @@ char	*find_path(t_tools tools)
     return (ft_strdup(""));
 }
 
+/*
+The `PATH` environment variable contains a colon-separated list of directories.
+Each directory in the list represents a location where the system looks for executable files.
+'Executable' refers to a file that contains machine code or a script that is interpreted by a specific runtime environment.
+Executables are files that can be run or executed by a computer's operating system to perform a specific task or set of tasks.
+*/
+// This function ensures that each path ends with a trailing slash
 void	parse_envp(t_tools *tools)
 {
     char *path_from_envp;
     int i;
     char *tmp;
 
-    // Find the PATH environment variable from tools->envp
     path_from_envp = find_path(*tools);
-
-    // Split the PATH into individual paths using ':' as the delimiter
     tools->paths = ft_split(path_from_envp, ':');
     free(path_from_envp);
-
     i = 0;
-    // Ensure each path ends with a trailing slash
     while (tools->paths[i])
     {
         if (ft_strncmp(&tools->paths[i][ft_strlen(tools->paths[i]) - 1], "/", 1) != 0)
         {
-            // If the last character is not '/', concatenate a '/' to the path
             tmp = ft_strjoin(tools->paths[i], "/");
             free(tools->paths[i]);
             tools->paths[i] = tmp;

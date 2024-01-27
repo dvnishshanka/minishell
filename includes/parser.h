@@ -3,9 +3,13 @@
 
 # include "minishell.h"
 
+/*
+When explicitly assigned a '1' to the first enumerator (PIPE) and
+left the subsequent enumerators to be automatically assigned values that increment by 1. 
+*/
 typedef enum s_tokens
 {
-	PIPE,
+	PIPE = 1,
 	GREAT,
 	GREAT_GREAT,
 	LESS,

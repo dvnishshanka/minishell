@@ -5,15 +5,22 @@ RM = rm -f
 
 LIBFT = libft.a
 LIBFT_DIR = libraries/libft
+INCLUDES_DIR = includes/
 PATH_SRC = src
 PATH_UTILS = src/utils
 PATH_ERROR = src/error
+PATH_LEXER = src/lexer
 
 SRCS =	$(PATH_SRC)/main.c	\
+		$(PATH_SRC)/signals.c	\
 		$(PATH_UTILS)/utils.c	\
 		$(PATH_UTILS)/parse_envp.c	\
 		$(PATH_UTILS)/minishell_loop.c	\
-		$(PATH_ERROR)/error.c
+		$(PATH_UTILS)/t_lexer_utils.c	\
+		$(PATH_ERROR)/error.c	\
+		$(PATH_LEXER)/token_reader.c	\
+		$(PATH_LEXER)/handle_token.c	\
+		$(PATH_LEXER)/handle_quotes.c
 OBJS = $(SRCS:.c=.o)
 
 # Compile source files into into object files
