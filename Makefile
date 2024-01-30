@@ -10,6 +10,8 @@ PATH_SRC = src
 PATH_UTILS = src/utils
 PATH_ERROR = src/error
 PATH_LEXER = src/lexer
+PATH_PARSER = src/parser
+PATH_BUILTINS = src/builtins
 
 SRCS =	$(PATH_SRC)/main.c	\
 		$(PATH_SRC)/signals.c	\
@@ -17,10 +19,18 @@ SRCS =	$(PATH_SRC)/main.c	\
 		$(PATH_UTILS)/parse_envp.c	\
 		$(PATH_UTILS)/minishell_loop.c	\
 		$(PATH_UTILS)/t_lexer_utils.c	\
+		$(PATH_UTILS)/t_lexer_clear_utils.c	\
+		$(PATH_UTILS)/t_simple_cmds_utils.c	\
 		$(PATH_ERROR)/error.c	\
+		$(PATH_ERROR)/error_handling.c	\
 		$(PATH_LEXER)/token_reader.c	\
 		$(PATH_LEXER)/handle_token.c	\
-		$(PATH_LEXER)/handle_quotes.c
+		$(PATH_LEXER)/handle_quotes.c	\
+		$(PATH_PARSER)/parser.c	\
+		$(PATH_PARSER)/parser_utils.c	\
+		$(PATH_PARSER)/handle_redirections.c	\
+		$(PATH_BUILTINS)/builtins.c	\
+		$(PATH_BUILTINS)/mini_echo.c
 OBJS = $(SRCS:.c=.o)
 
 # Compile source files into into object files

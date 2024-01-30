@@ -39,7 +39,7 @@ typedef struct s_tools
 	t_lexer					*lexer_list;
 	char					*pwd;
 	char					*old_pwd;
-	int						pipes;
+	int						pipe_count;
 	int						*pid;
 	bool					heredoc;
 	bool					reset;
@@ -56,6 +56,25 @@ typedef struct  s_simple_cmds
 	struct s_simple_cmds	*prev;
 }   t_simple_cmds;
 
+typedef struct s_parser_tools
+{
+	t_lexer			*lexer_list;
+	t_lexer			*redirections;
+	int				num_redirections;
+	t_tools			*tools;
+}	t_parser_tools;
+
 // Prototypes
 void	find_pwd(t_tools *tools);
+
+// parser.c
+int	parser(t_tools *tools);
+
+// parser_utils.c
+t_parser_tools  init_parser_tools(t_lexer *lexer_list, t_tools *tools);
+void    count_pipes(t_lexer *lexer_list,t_tools *tools);
+int		count_args(t_lexer *lexer_list);
+
+// handle_redirections.c
+void	rm_redirections(t_parser_tools *parser_tools);
 #endif

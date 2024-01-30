@@ -6,7 +6,7 @@ void    init_tools(t_tools *tools)
     // tools->paths;
     tools->simple_cmds = NULL;
     tools->lexer_list = NULL;
-	tools->pipes = 0;
+	tools->pipe_count = 0;
 	tools->pid = NULL;
 	tools->heredoc = false;
 	tools->reset = false;
@@ -42,11 +42,9 @@ void	minishell_loop(t_tools *tools)
 	char	*tmp;
 
 	tools->args = readline(READLINE_MSG);
-
 	tmp = ft_strtrim(tools->args, " ");
 	free(tools->args);
 	tools->args = tmp;
-
     if (tools->args == NULL)
 		print_err("Error in reading input.");
 	if (tools->args[0] == '\0')
@@ -59,8 +57,6 @@ void	minishell_loop(t_tools *tools)
     }
     token_reader(tools);
     t_lexer *node = tools->lexer_list;
-    
-
     while (node)
     {
         printf("str: %s %d %d\n\n",node->str, node->token, node->i);
@@ -68,7 +64,9 @@ void	minishell_loop(t_tools *tools)
     }
 	// if (!token_reader(tools))
 	// 	return (ft_error(1, tools));
-	// parser(tools);
+	parser(tools);
+	// printf("simple_cmds- str: %d\n\n", tools->simple_cmds->num_redirections);
+	// (tools->simple_cmds->builtin)(tools, tools->simple_cmds);
 	// prepare_executor(tools);
 	reset_tools(tools);
 }
