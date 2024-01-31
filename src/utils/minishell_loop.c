@@ -1,5 +1,27 @@
 #include "../../includes/minishell.h"
 
+/* 
+If there is one pipe tools->pid will require 3 * sizeof(int) size. Because there will be two commands and one for the NULL terminator.
+*/
+int	prepare_executor(t_tools *tools)
+{
+	// signal(SIGQUIT, sigquit_handler);
+	// To know whether the shell is in command execution
+	g_global.in_cmd = 1;	
+	if (tools->pipe_count == 0)
+		single_cmd(tools->simple_cmds, tools);
+	else
+	{
+		tools->pid = ft_calloc(sizeof(int), tools->pipes + 2);
+		if (!tools->pid)
+			return (ft_error(1, tools));
+		executor(tools);
+	}
+	g_global.in_cmd = 0;
+	return (0); // EXIT_SUCCESS
+}
+
+
 void    init_tools(t_tools *tools)
 {
     // *args;
@@ -67,6 +89,6 @@ void	minishell_loop(t_tools *tools)
 	parser(tools);
 	// printf("simple_cmds- str: %d\n\n", tools->simple_cmds->num_redirections);
 	// (tools->simple_cmds->builtin)(tools, tools->simple_cmds);
-	// prepare_executor(tools);
+	prepare_executor(tools);
 	reset_tools(tools);
 }

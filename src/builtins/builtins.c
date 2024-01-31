@@ -28,3 +28,20 @@ int (*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd)
 	}
 	return (NULL);
 }
+
+/*
+If there is a equal sign in the string return the index after = sign , else return 0.
+*/
+size_t	equal_sign(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}

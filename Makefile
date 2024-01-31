@@ -12,6 +12,7 @@ PATH_ERROR = src/error
 PATH_LEXER = src/lexer
 PATH_PARSER = src/parser
 PATH_BUILTINS = src/builtins
+PATH_EXECUTOR = src/executor
 
 SRCS =	$(PATH_SRC)/main.c	\
 		$(PATH_SRC)/signals.c	\
@@ -30,7 +31,9 @@ SRCS =	$(PATH_SRC)/main.c	\
 		$(PATH_PARSER)/parser_utils.c	\
 		$(PATH_PARSER)/handle_redirections.c	\
 		$(PATH_BUILTINS)/builtins.c	\
-		$(PATH_BUILTINS)/mini_echo.c
+		$(PATH_BUILTINS)/mini_echo.c	\
+		$(PATH_EXECUTOR)/handle_cmd.c	\
+		$(PATH_EXECUTOR)/executor.c
 OBJS = $(SRCS:.c=.o)
 
 # Compile source files into into object files
